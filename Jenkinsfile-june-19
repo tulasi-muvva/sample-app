@@ -33,7 +33,6 @@ node {
     sh label: '', script: "ssh -i /var/lib/jenkins/xyzkey.pem -o StrictHostKeyChecking=no ec2-user@172.31.82.122 ${command3}"
     sh label: '', script: "ssh -i /var/lib/jenkins/xyzkey.pem -o StrictHostKeyChecking=no ec2-user@172.31.82.122 ${command1}"
     sh label: '', script: "ssh -i /var/lib/jenkins/xyzkey.pem -o StrictHostKeyChecking=no ec2-user@172.31.82.122 ${command4}"
-	sh label: '', script: "ssh -i /var/lib/jenkins/xyzkey.pem -o StrictHostKeyChecking=no ec2-user@172.31.82.122 ${command5}"
     }
 }
 
