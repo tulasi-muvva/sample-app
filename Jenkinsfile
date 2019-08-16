@@ -1,25 +1,17 @@
-node {
-    stage('ScorceCodeFromGit') {
-    git 'https://github.com/rcp-suresh/shipwrick.git'
-}
-    stage('MavenBuild') {
-    Maven_Home=tool name: 'maven-3.3.9', type: 'maven'
-    Maven_Bin="${Maven_Home}/bin"
-    sh "${Maven_Bin}/mvn clean package"
-}
-    stage('DeployToDev') {
-    sh 'mv /var/lib/jenkins/workspace/JenkinsPipeline/target/*.war target/shipwick.war'
-    sh 'scp -i /ec2key.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/JenkinsPipeline/target/shipwick.war ec2-user@52.37.95.251:/opt/tomcat8/webapps/'
-}
-    stage('UploadToNexus') {
-    Maven_Home=tool name: 'maven-3.3.9', type: 'maven'
-    Maven_Bin="${Maven_Home}/bin"
-    sh "${Maven_Bin}/mvn clean deploy"
-}
-    stage('DeployToProduction') {
-    sh 'mv /var/lib/jenkins/workspace/JenkinsPipeline/target/*.war target/shipwick.war'
-    sh 'scp -i /ec2key.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/JenkinsPipeline/target/shipwick.war ec2-user@35.167.88.215:/opt/tomcat8/webapps/'
+properties([[$class: 'jenkins.model.BuildDiscarderProperty', strategy: [$class: 'LogRotator',
+                                                                        numToKeepStr: '10',
+                                                                        artifactNumToKeepStr: '10']]])
+@Library('utils@master') _
 
-}
-
+mvnPipeline {
+    // maven_script = "./scripts/build_maven_jenkins.sh"
+    // maven_publish_script = "mvn -s settings.xml -B -U clean deploy -DskipTests"
+    // pre_terraform_plan_script = "./scripts/terraform_module_checkout.sh v0.0.45"
+    // terraform_plan_environments = ["cdo-dev","cdo-prd"]
+    // terraform_apply_develop = ["cdo-dev"]
+    // terraform_apply_master = ["cdo-prd"]
+    // //post_terraform_apply_script = "./scripts/deploy_emr.sh"
+    // //skip_documentation = true
+    // //skip_sonar_analysis = true
+    // //ignore_sonar_blockers = true
 }
