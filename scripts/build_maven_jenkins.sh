@@ -1,4 +1,3 @@
 #! /bin/bash
 
-
-mvn clean package
+${MAVEN_BIN}/mvn clean package
