@@ -4,7 +4,7 @@ properties([[$class: 'jenkins.model.BuildDiscarderProperty', strategy: [$class: 
 @Library('utils@master') _
 
 mvnPipeline {
-    maven_script = "./scripts/build_maven_jenkins.sh"
+    //maven_script = "./scripts/build_maven_jenkins.sh"
     post_build_script = "./scripts/post_build_script.sh"
     // maven_publish_script = "mvn -s settings.xml -B -U clean deploy -DskipTests"
     // pre_terraform_plan_script = "./scripts/terraform_module_checkout.sh v0.0.45"
