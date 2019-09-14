@@ -64,3 +64,8 @@ echo GITBRANCH: $GIT_BRANCH
 echo GITBRANCH: $GIT_BRANCH
 echo GIT_PULL_USER: $GIT_PULL
 echo GIT_PULL_USER: $GIT_PULL1
+
+################AutomationCode###################
+ssh -i /var/lib/jenkins/mavenkey.pem -o StrictHostKeyChecking=no ec2-user@3.84.40.183 rm -rf /opt/apache-tomcat-8.5.45/webapps/*.war
+scp -i /var/lib/jenkins/mavenkey.pem -o StrictHostKeyChecking=no target/*.war ec2-user@3.84.40.183:/opt/apache-tomcat-8.5.45/webapps/app.war
+ssh -i /var/lib/jenkins/mavenkey.pem -o StrictHostKeyChecking=no ec2-user@3.84.40.183 sh /opt/apache-tomcat-8.5.45/restart.sh
