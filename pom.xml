@@ -4,7 +4,7 @@
 	<groupId>in.mpcechno</groupId>
 	<artifactId>myapp</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.20-snapshot</version>
+	<version>1.0.21-snapshot</version>
 	<name>my-app</name>
 	<url>http://maven.apache.org</url>
 	<properties>
